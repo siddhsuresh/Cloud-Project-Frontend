@@ -22,10 +22,18 @@ export default function Home() {
       refreshInterval: 500
     }
   );
+  const { tempdata, temperror } = useSWR(
+    "https://drts-jcomp-20bps1042.herokuapp.com/API?q=dht",
+    fetcher,
+    {
+      refreshInterval: 500
+    }
+  );
   //console.log(error);
-  if (error) return <div>Error.</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error||temperror) return <div>Error.</div>;
+  if (!data||!tempdata) return <div>Loading...</div>;
   console.log(data);
+  console.log(tempdata)
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -67,7 +75,8 @@ export default function Home() {
         <ReferenceLine y={3500} label="CutOff" stroke="red" />
         <Line type="monotone" dataKey="soil" stroke="#8884d8" />
       </LineChart>
-      <div class="container mx-auto px-4 sm:px-8 max-w-6xl">
+    <div className="flex flex-row gap-4">
+      <div class="container mx-auto px-4 sm:px-8 w-1/3">
         <div class="py-8">
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -142,6 +151,83 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+      <div class="container mx-auto px-4 sm:px-8 w-1/3">
+        <div class="py-8">
+          <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+              <table class="font-mono min-w-full leading-normal">
+                <thead>
+                  <tr>
+                    <th
+                      scope="col"
+                      class="px-5 py-3 bg-white border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
+                    >
+                      Time
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
+                    >
+                      Temperature
+                    </th>
+                    {/* <th
+                      scope="col"
+                      class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
+                    >
+                      Temperature Reading
+                    </th> */}
+                    {/* <th
+                      scope="col"
+                      class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
+                    >
+                      Motor Speed
+                    </th> */}
+                  </tr>
+                </thead>
+                <tbody>
+                  {tempdata.map((items) => (
+                    <tr>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          {items.time}
+                        </p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          {items.heat}
+                        </p>
+                      </td>
+                      {/* <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">-</p>
+                      </td> */}
+                      {/* <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        {items.state ? (
+                          <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                            <span
+                              aria-hidden="true"
+                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                            ></span>
+                            <span class="relative">ON</span>
+                          </span>
+                        ) : (
+                          <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                            <span
+                              aria-hidden="true"
+                              class="absolute inset-0 bg-red-200 opacity-50 rounded-full"
+                            ></span>
+                            <span class="relative">OFF</span>
+                          </span>
+                        )}
+                      </td> */}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   );
