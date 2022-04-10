@@ -26,12 +26,12 @@ export default function Home() {
     "https://drts-jcomp-20bps1042.herokuapp.com/API?q=dht",
     fetcher,
     {
-      refreshInterval: 500
+      refreshInterval: 2000
     }
   );
   //console.log(error);
   if (error||temperror) return <div>Error.</div>;
-  if (!data&&!tempdata) return <div>Loading...</div>;
+  if (!data||!tempdata) return <div>Loading...</div>;
   console.log(data);
   console.log(tempdata)
   return (
