@@ -86,12 +86,12 @@ export default function Home() {
                     >
                       Soil Moisture Reading
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
                     >
                       Temperature Reading
-                    </th>
+                    </th> */}
                     <th
                       scope="col"
                       class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
@@ -113,9 +113,9 @@ export default function Home() {
                           {items.soil}
                         </p>
                       </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      {/* <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">-</p>
-                      </td>
+                      </td> */}
                       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         {items.state ? (
                           <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
