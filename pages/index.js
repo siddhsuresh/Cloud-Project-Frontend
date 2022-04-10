@@ -76,7 +76,7 @@ export default function Home() {
         <Line type="monotone" dataKey="soil" stroke="#8884d8" />
       </LineChart>
     <div className="flex flex-row gap-4">
-      <div class="container mx-auto px-4 sm:px-8 w-1/3">
+      <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -152,7 +152,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div class="container mx-auto px-4 sm:px-8 w-1/3">
+      <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
