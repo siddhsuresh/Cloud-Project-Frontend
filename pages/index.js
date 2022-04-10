@@ -22,11 +22,11 @@ export default function Home() {
       refreshInterval: 500
     }
   );
-  const { tempdata, temperror } = useSWR(
+  const { data: tempdata, error: temperror } = useSWR(
     "https://drts-jcomp-20bps1042.herokuapp.com/API?q=dht",
     fetcher,
     {
-      refreshInterval: 2000
+      refreshInterval: 500
     }
   );
   //console.log(error);
