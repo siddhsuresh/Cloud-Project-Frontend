@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>J Comp Demo</title>
+        <title>CSE2021 | 20BPS1042 Presentation</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="relative w-full max-w-lg">
@@ -67,7 +67,7 @@ export default function Home() {
         <ReferenceLine y={3500} label="CutOff" stroke="red" />
         <Line type="monotone" dataKey="soil" stroke="#8884d8" />
       </LineChart>
-      <div class="container mx-auto px-4 sm:px-8 max-w-3xl">
+      <div class="container mx-auto px-4 sm:px-8 max-w-6xl">
         <div class="py-8">
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
