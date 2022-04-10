@@ -34,7 +34,7 @@ export default function Home() {
       </Head>
       <div className="relative w-full max-w-lg">
         <div className="animate-blob absolute top-0 -left-4 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
-        <div className="animate-blob animation-delay-2000 absolute top-0 -right-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
+        <div className="animate-blob delay-1000 absolute top-0 -right-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
       </div>
       <div className="text-xl font-bold text-center font-mono p-2">
         VIT Chennai Winter Semester 2022
