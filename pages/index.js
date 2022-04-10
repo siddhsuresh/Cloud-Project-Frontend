@@ -31,7 +31,7 @@ export default function Home() {
   );
   //console.log(error);
   if (error||temperror) return <div>Error.</div>;
-  if (!data||!tempdata) return <div>Loading...</div>;
+  if (!data&&!tempdata) return <div>Loading...</div>;
   console.log(data);
   console.log(tempdata)
   return (
