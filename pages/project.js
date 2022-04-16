@@ -2,6 +2,7 @@ import Head from "next/head";
 import useSWR from "swr";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { showNotification } from '@mantine/notifications';
 import {
   LineChart,
   Line,
@@ -18,6 +19,7 @@ import { io } from "socket.io-client";
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Home() {
+  const [pumpState, setPumpState] = useState(false);
   const [conn, setConn] = useState(false);
   const { data, error } = useSWR(
     "https://drts-jcomp-20bps1042.herokuapp.com/API",
@@ -27,11 +29,19 @@ export default function Home() {
     }
   );
   useEffect(() => {
+
     const socket = io("https://drts-jcomp-20bps1042.herokuapp.com/");
-    socket.on("esp8266",(data)=>{
-      console.log("Connected",data);
+    socket.on("esp8266", (data) => {
+      console.log("Connected", data);
       setConn(data);
     })
+    socket.on("pumpState", (data) => {
+      console.log("Pump State", data);
+    }
+    )
+    socket.on("setSpeed", (data) => {
+      console.log("Speed: ", data);
+    });
   }, []);
   if (error) return <div>Error...</div>;
   if (!data) return (
