@@ -66,7 +66,11 @@ export default function Index() {
 
                         <li class="p-8 shadow-xl rounded-xl">
                             <p class="text-3xl font-semibold">Implemented the Real Time <br/>Bi-Directional Connection</p>
-                            <p class="mt-3 text-xl font-medium text-[#17D7A0]">Using Socket.IO</p>
+                            <p class="mt-3 text-xl font-medium text-[#17D7A0] flex flex-row gap-4">
+<svg width="30" height="30" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet">
+	<circle cx="128" cy="128" r="114" stroke="#010101" stroke-width="20" fill="#ffffff" />
+	<path d="M97.637 121.69c27.327-22.326 54.058-45.426 81.98-67.097-14.646 22.505-29.708 44.711-44.354 67.215-12.562.06-25.123.06-37.626-.119zM120.737 134.132c12.621 0 25.183 0 37.745.179-27.505 22.206-54.117 45.484-82.099 67.096 14.646-22.505 29.708-44.77 44.354-67.275z" fill="#010101"/>
+</svg>Using Socket.IO</p>
                         </li>
 
                         <li class="p-8 shadow-xl rounded-xl">
@@ -169,14 +173,14 @@ export default function Index() {
                     <div class="max-w-xl mx-auto lg:ml-0">
                         <p class="text-sm font-medium text-[#17D7A0] text-white">Circuit Visulisation using Fritzing Software</p>
 
-                        <p class="mt-2 text-2xl font-bold text-white sm:text-3xl">
+                        <p class="mt-2 text-2xl font-bold text-white sm:text-4xl">
                             Visualising the ESP8266 Circuit
                         </p>
 
-                        <p class="lg:mt-4 block text-white">
+                        <p class="lg:mt-4 block text-white text-lg">
                             The Components connected to the ESP8266 Microcontroller are the DHT11 Temperature and Humidity Sensors, the L298N Motor Driver
                         </p>
-                        <p class="lg:mt-4 block text-white">
+                        <p class="lg:mt-4 block text-white text-lg">
                             The <span className="font-bold text-[#FF1E56]">L298N Motor Driver </span>controlles the State and the Power given to the Water Pump
                         </p>
                     </div>
@@ -203,14 +207,14 @@ export default function Index() {
                     <div class="max-w-xl mx-auto lg:ml-0">
                         <p class="text-sm font-medium text-[#17D7A0]">Circuit Visulisation using Fritzing Software</p>
 
-                        <p class="mt-2 text-2xl font-bold text-white sm:text-3xl">
+                        <p class="mt-2 text-2xl font-bold text-white sm:text-4xl">
                             Visualising the ESP32 Circuit
                         </p>
 
-                        <p class="lg:mt-4 block text-white">
+                        <p class="lg:mt-4 block text-white text-lg">
                             The ESP32 is programmed using the <span className="font-bold text-[#FF1E56]">FreeRTOS implementation in the ESP32 SDK.</span>
                         </p>
-                        <p class="lg:mt-4 block text-white">
+                        <p class="lg:mt-4 block text-white text-lg">
                             The ESP32 is connected to the <span className="font-bold text-[#21E6C1]">Capacitve Soil Moisture Sensor </span>to get the reading in voltage [0-4095] V
                         </p>
                     </div>
