@@ -60,16 +60,16 @@ export default function Home() {
           <div className="animate-blob absolute top-0 -left-4 w-100 h-100 bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
           <div className="animate-blob1 absolute top-0 -right-4 w-100 h-100 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
         </div>
-        <div className="text-xl font-bold text-center font-mono ">
+        <div className="text-xl font-bold text-center ">
           CSE2021 Distributed Real Time Systems
         </div>
-        <div className="text-6xl font-mono font-extrabold text-center  p-5">
+        <div className="text-6xl font-extrabold text-center  p-5">
           Real Time Irrigation System
         </div>
-        <div className="text-2xl font-mono font-bold text-center pb-10">
+        <div className="text-2xl font-bold text-center pb-10">
           Project Page
         </div>
-        <div className="p-10 text-2xl font-mono font-bold flex flex-row gap-5 text-center pb-10 text-cyan-800">
+        <div className="p-10 text-2xl font-bold flex flex-row gap-5 text-center pb-10 text-cyan-800">
           <svg className="animate-spin" width="20" height="20" fill="currentColor" class="tw-mr-2 tw-animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
             <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
             </path>
@@ -116,16 +116,16 @@ export default function Home() {
         <div className="animate-blob absolute top-0 -left-4 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
         <div className="animate-blob absolute top-0 -right-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
       </div>
-      <div className="text-xl font-bold text-center font-mono ">
+      <div className="text-xl font-bold text-center ">
         CSE2021 Distributed Real Time Systems
       </div>
-      <div className="text-6xl font-mono font-extrabold text-center  p-5">
+      <div className="text-6xl font-extrabold text-center  p-5">
         Real Time Irrigation System
       </div>
-      <div className="text-2xl font-mono font-bold text-center pb-10">
+      <div className="text-2xl font-bold text-center pb-10">
         Project Page
       </div>
-      <div class="p-10 flex items-center space-x-10 hover:space-x-4 font-mono font-bold">
+      <div class="p-10 flex items-center space-x-10 hover:space-x-4 font-bold">
         {conn
           ? <button
             className="z-5 block p-4 font-bold text-green-700 transition-all bg-green-100 filter rounded-full active:bg-green-50 hover:scale-110 focus:outline-none focus:ring"
@@ -178,7 +178,7 @@ export default function Home() {
           <div class="py-8">
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="font-mono min-w-full leading-normal">
+                <table class= min-w-full leading-normal">
                   <thead>
                     <tr>
                       <th
@@ -254,7 +254,7 @@ export default function Home() {
           <div class="py-8">
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="font-mono min-w-full leading-normal">
+                <table class= min-w-full leading-normal">
                   <thead>
                     <tr>
                       <th
