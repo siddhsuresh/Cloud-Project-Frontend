@@ -28,7 +28,7 @@ export default function Index() {
                                 </svg>
                                 Frond End Code
                             </button>
-                            <button type="button" className="shadow-white/50 py-2 px-4 text-center flex justify-center items-center  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                            <button type="button" className="shadow-white/50 py-2 px-4 flex justify-center items-center  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                                 style={{
                                     backgroundColor: "rgba(0,0,0,0.05)",
                                     backdropFilter: "blur(5px)",
@@ -45,6 +45,15 @@ export default function Index() {
                     </div>
                 </div>
             </div>
+            <section className="bg-black h-screen">
+                <div className="container mx-auto p-5">
+                    <div className="flex flex-wrap justify-center">
+                        <video className="w-[75%]" loop autoPlay muted>
+                            <source src="/Project.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+            </section>
             <section class="text-white bg-[#051367]">
                 <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
                     <div class="max-w-xl">
@@ -107,7 +116,7 @@ export default function Index() {
                                     </p>
                                     <div className="flex flex-row justify-between">
                                         <button
-                                            class="inline-flex items-center px-5 py-3 mt-8 font-medium text-[#17D7A0] text-white shadow-xl  bg-white rounded-lg hover:opacity-75"
+                                            class="inline-flex items-center px-5 py-3 mt-8 font-medium text-[#17D7A0] cursor-default shadow-xl  bg-white rounded-lg hover:opacity-75"
                                             style={{
                                                 backgroundColor: "rgba(0,0,0,0.05)",
                                                 backdropFilter: "blur(5px)",
@@ -126,7 +135,7 @@ export default function Index() {
                                             ESP8266
                                         </button>
                                         <button
-                                            class="inline-flex items-center px-5 py-3 mt-8 font-medium text-[#17D7A0] text-white shadow-xl bg-white rounded-lg hover:opacity-75"
+                                            class="inline-flex items-center px-5 py-3 mt-8 font-medium text-[#17D7A0] cursor-default shadow-xl bg-white rounded-lg hover:opacity-75"
                                             style={{
                                                 backgroundColor: "rgba(0,0,0,0.05)",
                                                 backdropFilter: "blur(5px)",
@@ -171,7 +180,7 @@ export default function Index() {
             <aside class="p-5 relativetext-gray-300 bg-gray-900 lg:flex h-full">
                 <div class="w-full p-12 text-center lg:w-1/2 sm:p-16 lg:p-24 lg:text-left">
                     <div class="max-w-xl mx-auto lg:ml-0">
-                        <p class="text-sm font-medium text-[#17D7A0] text-white">Circuit Visulisation using Fritzing Software</p>
+                        <p class="text-sm font-medium text-[#17D7A0]">Circuit Visulisation using Fritzing Software</p>
 
                         <p class="mt-2 text-2xl font-bold text-white sm:text-4xl">
                             Visualising the ESP8266 Circuit

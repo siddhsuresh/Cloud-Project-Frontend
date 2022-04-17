@@ -50,6 +50,7 @@ export default function Home() {
         <title>CSE2021 | 20BPS1042 Presentation</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar/>
       <div className="flex flex-col items-center justify-center min-h-screen w-screen py-2 ">
         <Head>
           <title>CSE2021 | 20BPS1042 Presentation</title>
