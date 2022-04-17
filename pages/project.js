@@ -208,11 +208,13 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.soil.map((items) => (
-                      <tr>
+                    {data.soil.map((items) =>{
+                      const time = new Date(items.time);
+                      return (
+                      <tr key={items.time}>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p class="text-gray-900 whitespace-no-wrap">
-                            {items.time}
+                            {time.toLocaleString()}
                           </p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -243,7 +245,7 @@ export default function Home() {
                           )}
                         </td>
                       </tr>
-                    ))}
+                    )})}
                   </tbody>
                 </table>
               </div>
@@ -284,7 +286,8 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.dht.map((items) => (
+                    {data.dht.map((items) => 
+                    (
                       <tr>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p class="text-gray-900 whitespace-no-wrap">
