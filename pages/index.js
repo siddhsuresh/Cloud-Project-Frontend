@@ -45,7 +45,7 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-            <section className="bg-black h-screen">
+            <section className="bg-black h-full">
                 <div className="container mx-auto p-5">
                     <div className="flex flex-wrap justify-center">
                         <video className="w-[75%]" loop autoPlay muted>
