@@ -1,12 +1,13 @@
 import Head from "next/head"
 import Navbar from "../components/navbar"
+import Image from "next/image"
 export default function Index() {
     return (
         <>
             <Head>
                 <title>CSE2021 | 20BPS1042 Home</title>
             </Head>
-            <Navbar color="white" />
+            <Navbar color="black" />
             <div className="relative h-full overflow-hidden bg-indigo-900">
                 <img src="/background.svg" className="absolute h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-black opacity-25"></div>
@@ -15,7 +16,7 @@ export default function Index() {
                         <p className="flex flex-col items-center text-center text-6xl font-semibold text-white md:text-8xl pb-4">Real Time Irrigation System</p>
                         <p className="mt-6 flex max-w-lg flex-col items-center text-center text-xl font-semibold text-white">CSE2021 Distributed Real Time Systems <br />J Component</p>
                         <p className="mt-6 flex max-w-lg flex-col items-center text-center text-2xl font-semibold text-white">Presented By <br />Siddharth Suresh 20BPS1042</p>
-                        <div className="flex flex-row gap-5 w-xl justify-between">
+                        <div className="p-5 flex flex-row gap-5 w-xl justify-between">
                             <button type="button" className="shadow-white/50 py-2 px-4 flex justify-center items-center  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                                 style={{
                                     backgroundColor: "rgba(0,0,0,0.05)",
@@ -57,7 +58,7 @@ export default function Index() {
             <section class="text-white bg-[#051367]">
                 <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
                     <div class="max-w-xl">
-                        <h2 class="text-4xl font-bold sm:text-6xl">
+                        <h2 class="text-4xl font-bold sm:text-6xl text-center sm:text-left">
                             Features
                         </h2>
 
@@ -70,16 +71,16 @@ export default function Index() {
                         <li class="p-8 shadow-xl rounded-xl">
                             <p class="text-3xl font-semibold">Implemented the BackEnd API using Fastify</p>
                             <p class="mt-3 text-xl font-medium text-white flex flex-row gap-4">
-<svg width="27" height="30" viewBox="0 0 27 30" xmlns="http://www.w3.org/2000/svg"><title>heroku-logo</title><path d="M3 0C1.13 0 0 1.11 0 2.903v24.194C0 28.883 1.13 30 3 30h21c1.863 0 3-1.11 3-2.903V2.903C26.994 1.11 25.863 0 24 0H3zm21.042 2c.508.006.958.448.958.929V27.07c0 .487-.45.929-.958.929H2.958C2.45 28 2 27.558 2 27.071V2.93c0-.488.45-.93.958-.93h21.084zM20 25h-2.781v-8.506c0-.774-.237-1.048-.468-1.208-1.396-.959-5.414-.042-7.834.916L7 17.012 7.006 5h2.816v7.917a20.99 20.99 0 0 1 1.882-.482c2.988-.643 5.184-.47 6.616.505.787.536 1.68 1.59 1.68 3.554V25zm-6-15h3.293A16.109 16.109 0 0 0 20 5h-3.287c-.49 1.188-1.385 3.188-2.713 5zM7 25v-7l3 3.5L7 25z" fill="#79589f" fill-rule="evenodd"/></svg>Hosted in Heroku</p>
+                                <svg width="27" height="30" viewBox="0 0 27 30" xmlns="http://www.w3.org/2000/svg"><title>heroku-logo</title><path d="M3 0C1.13 0 0 1.11 0 2.903v24.194C0 28.883 1.13 30 3 30h21c1.863 0 3-1.11 3-2.903V2.903C26.994 1.11 25.863 0 24 0H3zm21.042 2c.508.006.958.448.958.929V27.07c0 .487-.45.929-.958.929H2.958C2.45 28 2 27.558 2 27.071V2.93c0-.488.45-.93.958-.93h21.084zM20 25h-2.781v-8.506c0-.774-.237-1.048-.468-1.208-1.396-.959-5.414-.042-7.834.916L7 17.012 7.006 5h2.816v7.917a20.99 20.99 0 0 1 1.882-.482c2.988-.643 5.184-.47 6.616.505.787.536 1.68 1.59 1.68 3.554V25zm-6-15h3.293A16.109 16.109 0 0 0 20 5h-3.287c-.49 1.188-1.385 3.188-2.713 5zM7 25v-7l3 3.5L7 25z" fill="#79589f" fill-rule="evenodd" /></svg>Hosted in Heroku</p>
                         </li>
 
                         <li class="p-8 shadow-xl rounded-xl">
-                            <p class="text-3xl font-semibold">Implemented the Real Time <br/>Bi-Directional Connection</p>
+                            <p class="text-3xl font-semibold">Implemented the Real Time <br />Bi-Directional Connection</p>
                             <p class="mt-3 text-xl font-medium text-[#17D7A0] flex flex-row gap-4">
-<svg width="30" height="30" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet">
-	<circle cx="128" cy="128" r="114" stroke="#010101" stroke-width="20" fill="#ffffff" />
-	<path d="M97.637 121.69c27.327-22.326 54.058-45.426 81.98-67.097-14.646 22.505-29.708 44.711-44.354 67.215-12.562.06-25.123.06-37.626-.119zM120.737 134.132c12.621 0 25.183 0 37.745.179-27.505 22.206-54.117 45.484-82.099 67.096 14.646-22.505 29.708-44.77 44.354-67.275z" fill="#010101"/>
-</svg>Using Socket.IO</p>
+                                <svg width="30" height="30" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet">
+                                    <circle cx="128" cy="128" r="114" stroke="#010101" stroke-width="20" fill="#ffffff" />
+                                    <path d="M97.637 121.69c27.327-22.326 54.058-45.426 81.98-67.097-14.646 22.505-29.708 44.711-44.354 67.215-12.562.06-25.123.06-37.626-.119zM120.737 134.132c12.621 0 25.183 0 37.745.179-27.505 22.206-54.117 45.484-82.099 67.096 14.646-22.505 29.708-44.77 44.354-67.275z" fill="#010101" />
+                                </svg>Using Socket.IO</p>
                         </li>
 
                         <li class="p-8 shadow-xl rounded-xl">
@@ -159,18 +160,20 @@ export default function Index() {
                             </div>
 
                             <div class="relative h-64 lg:order-first lg:h-full rounded-lg">
-                                <img
+                                <Image
                                     src="/NodeMCU-ESP8266-Pinout.jpg"
                                     alt="Sunset with palm trees"
                                     class="absolute inset-0 lg:object-fill r w-full h-full rounded-lg"
+                                    layout="fill"
                                 />
                             </div>
 
                             <div class="relative h-64 lg:h-full rounded-lg">
-                                <img
+                                <Image
                                     src="/esp32.png"
                                     alt="Man in a hat and yellow jumper"
                                     class="absolute inset-0 object-cover lg:object-scale-down w-full h-full rounded-lg"
+                                    layout="fill"
                                 />
                             </div>
                         </div>
@@ -196,20 +199,22 @@ export default function Index() {
                 </div>
 
                 <div class="relative w-full h-64 sm:h-96 lg:w-1/2 lg:h-auto rounded-lg">
-                    <img
+                    <Image
                         src="/ESP8266_Connection.png"
                         alt="ESP8266 Connection"
                         class="p-1 rounded-xl absolute inset-0 object-scale-down w-full h-full hover:scale-105 ease-in-out duration-300"
+                        layout="fill"
                     />
                 </div>
             </aside>
             <aside class="p-5 relative overflow-hidden text-gray-300 bg-gray-900 lg:flex h-full">
 
                 <div class="relative w-full h-64 sm:h-96 lg:w-1/2 lg:h-auto rounded-lg">
-                    <img
+                    <Image
                         src="/ESP32_Connection.png"
                         alt="ESP32 Connection"
                         class="p-5 absolute inset-0 w-full h-full rounded-xl hover:scale-105 ease-in-out duration-300"
+                        layout="fill"
                     />
                 </div>
                 <div class="w-full p-12 text-center lg:w-1/2 sm:p-16 lg:p-24 lg:text-left">

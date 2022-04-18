@@ -3,38 +3,76 @@ import useSWR from "swr";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { showNotification } from '@mantine/notifications';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ReferenceLine
-} from "recharts";
 import Navbar from "../components/navbar";
 import { io } from "socket.io-client";
+import { LineChart } from "@carbon/charts-react";
+import "@carbon/charts/styles-g10.css";
+import { createStyles, Table, ScrollArea } from '@mantine/core';
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
+const useStyles = createStyles((theme) => ({
+  header: {
+    position: 'sticky',
+    top: 0,
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    transition: 'box-shadow 150ms ease',
+
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      borderBottom: `1px solid ${
+        theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[2]
+      }`,
+    },
+  },
+
+  scrolled: {
+    boxShadow: theme.shadows.sm,
+  },
+}));
+
 export default function Home() {
-  const [pumpState, setPumpState] = useState(false);
-  const [conn, setConn] = useState(false);
+  const [esp8266, setesp8266] = useState(false);
+  const [esp32, setesp32] = useState(false);
+  const { classes, cx } = useStyles();
+  const [scrolled, setScrolled] = useState(false);
+  function checkGroupH(group) {
+    if(group.group === "heat"){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+  function checkGroupS(group) {
+    if(group.group === "soil"){
+      return true
+    }
+    else{
+      return false
+    }
+  }
   const { data, error } = useSWR(
     "https://drts-jcomp-20bps1042.herokuapp.com/API",
     fetcher,
     {
-      refreshInterval: 500
+      refreshInterval: 200
     }
   );
   useEffect(() => {
-
     const socket = io("https://drts-jcomp-20bps1042.herokuapp.com/");
     socket.on("esp8266", (data) => {
-      console.log("Connected", data);
-      setConn(data);
+      console.log("ESP8266 Connection State ", data);
+      setesp8266(data);
     })
+    socket.on("esp32", (data) => {
+      console.log("ESP32 Connected State ", data);
+      setesp32(data);
+    });
     socket.on("pumpState", (data) => {
       console.log("Pump State", data);
     }
@@ -44,69 +82,31 @@ export default function Home() {
     });
   }, []);
   if (error) return <div>Error...</div>;
-  if (!data) return (
-    <>
-      <Head>
-        <title>CSE2021 | 20BPS1042 Presentation</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Navbar/>
-      <div className="flex flex-col items-center justify-center min-h-screen w-screen py-2 ">
-        <Head>
-          <title>CSE2021 | 20BPS1042 Presentation</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <div className="relative w-full max-w-lg">
-          <div className="animate-blob absolute top-0 -left-4 w-100 h-100 bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
-          <div className="animate-blob1 absolute top-0 -right-4 w-100 h-100 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
-        </div>
-        <div className="text-xl font-bold text-center ">
-          CSE2021 Distributed Real Time Systems
-        </div>
-        <div className="text-6xl font-extrabold text-center  p-5">
-          Real Time Irrigation System
-        </div>
-        <div className="text-2xl font-bold text-center pb-10">
-          Project Page
-        </div>
-        <div className="p-10 text-2xl font-bold flex flex-row gap-5 text-center pb-10 text-cyan-800">
-          <svg className="animate-spin" width="20" height="20" fill="currentColor" class="tw-mr-2 tw-animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-            <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
-            </path>
-          </svg> Connecting to the API to get the latest data
-        </div>
-        <div class="bg-white w-1/2 mx-auto p-2 sm:p-4 sm:h-64 rounded-2xl shadow-lg flex flex-col gap-10 select-none ">
-          <div class="h-52 w-72 rounded-xl bg-gray-200 animate-pulse">
-          </div>
-          <div class="flex flex-col flex-1 gap-10 sm:p-2">
-            <div class="flex flex-1 flex-col gap-3">
-              <div class="bg-gray-200 w-full animate-pulse h-14 rounded-2xl">
-              </div>
-              <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl">
-              </div>
-              <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl">
-              </div>
-              <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl">
-              </div>
-              <div class="bg-gray-200 w-full animate-pulse h-3 rounded-2xl">
-              </div>
-            </div>
-            <div class="mt-auto flex gap-3">
-              <div class="bg-gray-200 w-20 h-8 animate-pulse rounded-full">
-              </div>
-              <div class="bg-gray-200 w-20 h-8 animate-pulse rounded-full">
-              </div>
-              <div class="bg-gray-200 w-20 h-8 animate-pulse rounded-full ml-auto">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+  if (!data) return <div>Loading...</div>;
   console.log(data);
+  const resultH = data.readings.filter(checkGroupH);
+  const resultS = data.readings.filter(checkGroupS);
+  console.log(resultH);
+  console.log(resultS);
+  const rowsH = resultH.map((row) =>{ 
+    const time = new Date(row.time);
+    return(
+    <tr key={row.time}>
+      <td>{time.toLocaleString()}</td>
+      <td className="font-semibold">{row.heat}</td>
+    </tr>
+  )});
+  const rowsS = resultS.map((row) => {
+    const time = new Date(row.time);
+    return(
+    <tr key={row.time} className="font-semibold">
+      <td className="font-normal">{time.toLocaleString()}</td>
+      {row.soil>=3500?<td className="text-blue-700">{row.soil} - Wet</td>:<td className="text-amber-800">{row.soil} - Dry</td>}
+      {row.state?<td className="text-green-600">ON</td>:<td className="text-red-600">OFF</td>}
+    </tr>
+  )});
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-screen py-2 ">
+    <div className="flex flex-col items-center justify-center h-full w-full py-2 ">
       <Head>
         <title>CSE2021 | 20BPS1042 Presentation</title>
         <link rel="icon" href="/favicon.ico" />
@@ -126,7 +126,7 @@ export default function Home() {
         Project Page
       </div>
       <div class="p-10 flex items-center space-x-10 hover:space-x-4 font-bold">
-        {conn
+        {esp8266
           ? <button
             className="z-5 block p-4 font-bold text-green-700 transition-all bg-green-100 filter rounded-full active:bg-green-50 hover:scale-110 focus:outline-none focus:ring"
             type="button"
@@ -140,7 +140,7 @@ export default function Home() {
             Disconneted from ESP8266
           </button>
         }
-        {data.esp32
+        {esp32
           ? <button
             class="z-5 block p-4 font-bold text-blue-700 transition-all bg-blue-100 filter rounded-full active:bg-blue-50 hover:scale-110 focus:outline-none focus:ring"
             type="button"
@@ -155,180 +155,57 @@ export default function Home() {
           </button>
         }
       </div>
+      <div className="container p-10">
       <LineChart
-        width={1000}
-        height={700}
-        data={data.soil}
-        margin={{
-          top: 20,
-          right: 50,
-          left: 20,
-          bottom: 5
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <ReferenceLine y={3500} stroke="red" />
-        <Line type="monotone" dataKey="soil" stroke="#8884d8" />
-      </LineChart>
-      <div className="flex flex-row gap-4">
-        <div class="container mx-auto px-4 sm:px-8">
-          <div class="py-8">
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="min-w-full leading-normal">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        class="px-5 py-3 bg-white border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                      >
-                        Time
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                      >
-                        Soil Moisture Reading
-                      </th>
-                      {/* <th
-                      scope="col"
-                      class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                    >
-                      Temperature Reading
-                    </th> */}
-                      <th
-                        scope="col"
-                        class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                      >
-                        Motor State
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.soil.map((items) =>{
-                      const time = new Date(items.time);
-                      return (
-                      <tr key={items.time}>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            {time.toLocaleString()}
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            {items.soil}
-                          </p>
-                        </td>
-                        {/* <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">-</p>
-                      </td> */}
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          {items.state ? (
-                            <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                              <span
-                                aria-hidden="true"
-                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                              ></span>
-                              <span class="relative">ON</span>
-                            </span>
-                          ) : (
-                            <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                              <span
-                                aria-hidden="true"
-                                class="absolute inset-0 bg-red-200 opacity-50 rounded-full"
-                              ></span>
-                              <span class="relative">OFF</span>
-                            </span>
-                          )}
-                        </td>
-                      </tr>
-                    )})}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container mx-auto px-4 sm:px-8">
-          <div class="py-8">
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="min-w-full leading-normal">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        class="px-5 py-3 bg-white border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                      >
-                        Time
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                      >
-                        Temperature
-                      </th>
-                      {/* <th
-                      scope="col"
-                      class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                    >
-                      Temperature Reading
-                    </th> */}
-                      {/* <th
-                      scope="col"
-                      class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-bold"
-                    >
-                      Motor Speed
-                    </th> */}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.dht.map((items) => 
-                    (
-                      <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            {items.time}
-                          </p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            {items.heat}
-                          </p>
-                        </td>
-                        {/* <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">-</p>
-                      </td> */}
-                        {/* <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {items.state ? (
-                          <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                            <span
-                              aria-hidden="true"
-                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                            ></span>
-                            <span class="relative">ON</span>
-                          </span>
-                        ) : (
-                          <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                            <span
-                              aria-hidden="true"
-                              class="absolute inset-0 bg-red-200 opacity-50 rounded-full"
-                            ></span>
-                            <span class="relative">OFF</span>
-                          </span>
-                        )}
-                      </td> */}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+			data={data.readings}
+			options={{
+        "title": "Data Collected",
+        "axes": {
+          "left": {
+            "title": "Temperature (°C)",
+            "mapsTo": "heat"
+          },
+          "bottom": {
+            "scaleType": "time",
+            "mapsTo": "time",
+            "title": "Time"
+          },
+          "right": {
+            "title": "Soil Dampeness (V)",
+            "mapsTo": "soil",
+            "correspondingDatasets": [
+              "soil"
+            ]
+          }
+        },
+        "curve": "curveMonotoneX",
+        "height": "400px"
+      }}>
+		  </LineChart>
+      <div className="p-10"/>
+      <ScrollArea sx={{ height: 300 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
+      <Table sx={{ minWidth: 700 }}>
+        <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
+          <tr>
+            <th>Time</th>
+            <th>Temperature</th>
+          </tr>
+        </thead>
+        <tbody>{rowsH}</tbody>
+      </Table>
+    </ScrollArea>
+    <ScrollArea sx={{ height: 300 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
+      <Table sx={{ minWidth: 700 }}>
+        <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
+          <tr>
+            <th>Time</th>
+            <th>Soil Reading</th>
+            <th>Motor State</th>
+          </tr>
+        </thead>
+        <tbody>{rowsS}</tbody>
+      </Table>
+    </ScrollArea>
       </div>
     </div>
   );

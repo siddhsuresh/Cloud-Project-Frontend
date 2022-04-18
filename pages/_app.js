@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/styles.css'
 import { NotificationsProvider } from '@mantine/notifications';
 
 function MyApp({ Component, pageProps }) {
