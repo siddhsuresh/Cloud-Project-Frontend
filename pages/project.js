@@ -6,7 +6,6 @@ import { showNotification } from '@mantine/notifications';
 import Navbar from "../components/navbar";
 import { io } from "socket.io-client";
 import { LineChart } from "@carbon/charts-react";
-import "@carbon/charts/styles-g10.css";
 import { createStyles, Table, ScrollArea } from '@mantine/core';
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
