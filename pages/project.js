@@ -1,5 +1,6 @@
 import Head from "next/head";
 import useSWR from "swr";
+import { SegmentedControl } from '@mantine/core';
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { showNotification } from '@mantine/notifications';
@@ -38,6 +39,7 @@ export default function Home() {
   const [esp8266, setesp8266] = useState(false);
   const [esp32, setesp32] = useState(false);
   const { classes, cx } = useStyles();
+  const [activePage,setActivePage] = useState("col");
   const [scrolled, setScrolled] = useState(false);
   function checkGroupH(group) {
     if(group.group === "heat"){
@@ -154,7 +156,29 @@ export default function Home() {
           </button>
         }
       </div>
+      <div className="p-10 w-1/2 flex items-center justify-center">
+      <SegmentedControl
+          value={activePage}
+          onChange={setActivePage}
+          fullWidth
+          size="lg"
+          radius="lg"
+          color="blue"
+          transitionDuration={700}
+          transitionTimingFunction="linear"
+          data={[
+            { label: 'Collected Data', value: 'col' },
+            { label: 'Logged Data', value: 'log' },
+          ]}
+          sx={() => ({
+            backgroundColor: "rgba(0,0,0,0.05)",
+            backdropFilter: "blur(5px)",
+            borderRadius: "20px"
+          })}
+        />
+        </div>
       <div className="container p-10">
+        {activePage === "col" ?<>
       <LineChart
 			data={data.readings}
 			options={{
@@ -205,6 +229,8 @@ export default function Home() {
         <tbody>{rowsS}</tbody>
       </Table>
     </ScrollArea>
+    </>:<>To Do..</>
+}
       </div>
     </div>
   );
