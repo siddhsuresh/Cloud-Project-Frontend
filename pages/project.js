@@ -179,7 +179,7 @@ export default function Home() {
         <button
             class="z-5 block p-4 font-bold text-blue-700 transition-all bg-blue-100 filter rounded-full active:bg-blue-50 hover:scale-110 focus:outline-none focus:ring"
             type="button"
-          >Current Motor State {lastReadingS.state?<span>ON</span>:<span>OFF</span>} </button>
+          >Current Motor State: {resultS.length>0&&esp8266?lastReadingS.state?<span>ON</span>:<span>OFF</span>:<span>Disconneted</span>} </button>
         {esp32
           ? <button
             class="z-5 block p-4 font-bold text-blue-700 transition-all bg-blue-100 filter rounded-full active:bg-blue-50 hover:scale-110 focus:outline-none focus:ring"
