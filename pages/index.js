@@ -180,7 +180,7 @@ export default function Index() {
                     </div>
                 </aside>
             </div>
-            <aside class="p-5 relativetext-gray-300 bg-gray-900 lg:flex h-full">
+            <aside class="p-5 relative text-gray-300 lg:flex h-full bg-black">
                 <div class="w-full p-12 text-center lg:w-1/2 sm:p-16 lg:p-24 lg:text-left">
                     <div class="max-w-xl mx-auto lg:ml-0">
                         <p class="text-sm font-medium text-[#17D7A0]">Circuit Visulisation using Fritzing Software</p>
@@ -207,7 +207,7 @@ export default function Index() {
                     />
                 </div>
             </aside>
-            <aside class="p-5 relative overflow-hidden text-gray-300 bg-gray-900 lg:flex h-full">
+            <aside class="p-5 relative overflow-hidden text-gray-300 bg-black lg:flex h-full">
 
                 <div class="relative w-full h-64 sm:h-96 lg:w-1/2 lg:h-auto rounded-lg">
                     <Image
