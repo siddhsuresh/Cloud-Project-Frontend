@@ -1,6 +1,7 @@
 import '../styles/globals.css'
-import '../styles/styles.css'
 import '../styles/styles-g10.css'
+import '../styles/carbon-components.css'
+
 import { NotificationsProvider } from '@mantine/notifications';
 
 function MyApp({ Component, pageProps }) {
