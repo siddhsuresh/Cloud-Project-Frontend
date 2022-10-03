@@ -113,7 +113,7 @@ export default function Home() {
     return (
       <tr key={row.time} className="font-semibold">
         <td className="font-normal">{time.toLocaleString()}</td>
-        {row.soil < 500 ? <td className="text-blue-700">{row.soil} - Wet</td> : <td className="text-amber-800">{row.soil} - Dry</td>}
+        {row.soil < 3800 ? <td className="text-blue-700">{row.soil} - Wet</td> : <td className="text-amber-800">{row.soil} - Dry</td>}
         {row.state ? <td className="text-green-600">ON</td> : <td className="text-red-600">OFF</td>}
       </tr>
     )
