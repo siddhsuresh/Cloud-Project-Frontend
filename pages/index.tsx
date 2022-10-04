@@ -64,7 +64,7 @@ export default function Index() {
               Real Time Irrigation System
             </p>
             <p className="mt-6 flex max-w-lg flex-col items-center text-center text-xl font-semibold text-white">
-              CSECSE2026 Cloud Computing <br />J Component
+              CSE2026 Cloud Computing <br />J Component
             </p>
             <Suspense fallback={<div>Loading...</div>}>
               <UserInfo />
