@@ -1,15 +1,47 @@
+//@ts-nocheck
 import Head from "next/head";
 import useSWR from "swr";
 import { SegmentedControl } from '@mantine/core';
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { showNotification } from '@mantine/notifications';
+import { useState, useEffect, Suspense } from "react";
+import { Button } from "@mantine/core";
 import Navbar from "../components/navbar";
 import { io } from "socket.io-client";
 import { LineChart } from "@carbon/charts-react";
 import { createStyles, Table, ScrollArea } from '@mantine/core';
+import { useCurrentUser } from "app/users/hooks/useCurrentUser"
+import logout from "app/auth/mutations/logout"
+import { useMutation } from "@blitzjs/rpc"
+import { Routes, BlitzPage } from "@blitzjs/next"
+import Link from "next/link";
+import { useRouter } from "next/router";
+import {gSSP} from "app/blitz-server"
+
+type Props = {
+  userId: unknown
+  publicData: SessionContext["$publicData"]
+}
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
+
+export const getServerSideProps = gSSP<Props>(async ({ctx}) => {
+  const {session} = ctx
+  if(!session.userId) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false
+      }
+    }
+  }else{
+    return {
+      props: {
+        userId: session.userId,
+        publicData: session.publicData
+      }
+    }
+  }
+})
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -33,6 +65,81 @@ const useStyles = createStyles((theme) => ({
     boxShadow: theme.shadows.sm,
   },
 }));
+
+const UserInfo = () => {
+  const router = useRouter()
+  const currentUser = useCurrentUser()
+  const [logoutMutation] = useMutation(logout)
+
+  if (currentUser) {
+    return (
+      <>
+        <button
+        className="button small"
+
+          onClick={async () => {
+            await logoutMutation().then(() => {
+              router.push(Routes.LoginPage())
+            })
+          }}
+        >
+          Logout
+        </button>
+        <style jsx >
+        {`
+          .buttons {
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 0.5rem;
+          }
+          .button {
+            font-size: 1rem;
+            background-color: #6700eb;
+            padding: 1rem 2rem;
+            color: #f4f4f4;
+            text-align: center;
+          }
+
+          .button.small {
+            padding: 0.5rem 1rem;
+          }
+
+          .button:hover {
+            background-color: #45009d;
+          }
+
+          .button-outline {
+            border: 2px solid #6700eb;
+            padding: 1rem 2rem;
+            color: #6700eb;
+            text-align: center;
+          }
+
+          .button-outline:hover {
+            border-color: #45009d;
+            color: #45009d;
+          }
+        `}
+      </style>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Link href={Routes.SignupPage()} passHref>
+          <a className="button small">
+            <strong>Sign Up</strong>
+          </a>
+        </Link>
+        <Link href={Routes.LoginPage()} passHref>
+          <a className="button small">
+            <strong>Login</strong>
+          </a>
+        </Link>
+      </>
+    )
+  }
+}
 
 export default function Home() {
   const [esp8266, setesp8266] = useState(false);
@@ -144,7 +251,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full py-2 ">
       <Head>
-        <title>CSE2021 | 20BPS1042 Presentation</title>
+        <title>CSE2026 | Presentation</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar color="black"></Navbar>
@@ -153,11 +260,13 @@ export default function Home() {
         <div className="animate-blob absolute top-0 -right-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-80"></div>
       </div>
       <div className="text-xl font-bold text-center ">
-        CSE2021 Distributed Real Time Systems
-      </div>
+        CSE2026 Cloud Computing      </div>
       <div className="text-6xl font-extrabold text-center  p-5">
         Real Time Irrigation System
       </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserInfo />
+      </Suspense>
       <div className="text-2xl font-bold text-center pb-10">
         Project Page
       </div>
@@ -313,3 +422,8 @@ export default function Home() {
     </div>
   );
 }
+
+Home.suppressFirstRenderFlicker = true
+
+
+
