@@ -89,7 +89,7 @@ export default function Index() {
                 }}
                 onClick={() => {
                   window.open(
-                    "https://github.com/siddhsuresh/DRTS-Project-Frontend"
+                    "https://github.com/siddhsuresh/Cloud-Project-Frontend"
                   );
                 }}
               >
@@ -114,7 +114,7 @@ export default function Index() {
                 }}
                 onClick={() => {
                   window.open(
-                    "https://github.com/siddhsuresh/DRTS-Project-Backend"
+                    "https://github.com/siddhsuresh/Cloud-Project-Backend"
                   );
                 }}
               >
