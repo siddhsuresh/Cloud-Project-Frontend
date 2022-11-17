@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <NotificationsProvider>
-        <Suspense>
+        <Suspense fallback="loading...">
           <Component {...pageProps} />
         </Suspense>
       </NotificationsProvider>

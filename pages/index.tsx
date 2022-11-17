@@ -3,12 +3,11 @@ import Head from "next/head";
 import Navbar from "../components/navbar";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@mantine/core";
 import { useCurrentUser } from "app/users/hooks/useCurrentUser";
 import logout from "app/auth/mutations/logout";
 import { useMutation } from "@blitzjs/rpc";
 import { Routes, BlitzPage } from "@blitzjs/next";
-import { Suspense } from "react"; 
+import { Suspense } from "react";
 
 const UserInfo = () => {
   const currentUser = useCurrentUser();
@@ -18,7 +17,7 @@ const UserInfo = () => {
     return (
       <>
         <button
-        className="button small"
+          className="button small"
           onClick={async () => {
             await logoutMutation();
           }}
@@ -49,33 +48,33 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>CSE2026 | Home</title>
+        <title>CSE2035 | Home</title>
       </Head>
       <Navbar color="black" />
       <div className="relative h-full overflow-hidden bg-indigo-900">
         <img
-          src="/background.svg"
+          src="/background.jpg"
           className="absolute h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-25"></div>
         <div className="container relative z-10 mx-auto my-24 flex w-4/5 items-center rounded-lg border-4 border-white py-16 md:my-32">
           <div className="relative z-10 flex w-full flex-col items-center justify-between gap-4">
             <p className="flex flex-col items-center text-center text-6xl font-semibold text-white md:text-8xl pb-4">
-              Real Time Irrigation System
+              Real Time Agricultural System for Farmers
             </p>
             <p className="mt-6 flex max-w-lg flex-col items-center text-center text-xl font-semibold text-white">
-              CSE2026 Cloud Computing <br />J Component
+              CSE2035 Communication for CPS <br />J Component
             </p>
             <Suspense fallback={<div>Loading...</div>}>
               <UserInfo />
             </Suspense>
-            <p className="mt-6 flex max-w-lg flex-col items-center text-center text-2xl font-semibold text-white">
+            <p className="mt-6 flex max-w-lg flex-col items-center text-center text-3xl font-semibold text-white">
               Presented By <br />
-              <div className="p-5 flex flex-row items-center justify-center gap-4 w-full">
-              <p>Siddharth Suresh 20BPS1042</p>
-              <p>Prantik Dhara 20BPS1083</p>
-              <p>Kanishka Ghosh 20BPS1125</p>
-              <p>Aayush Krishna 20BPS1102</p>
+              <div className="p-5 flex flex-row items-center justify-center gap-4 w-full font-bold">
+                <p className="text-xl">Siddharth Suresh 20BPS1042</p>
+                <p className="text-xl">Prantik Dhara 20BPS1083</p>
+                <p className="text-xl">Kanishka Ghosh 20BPS1125</p>
+                <p className="text-xl">Siddharth <br/> M 20BPS1007</p>
               </div>
             </p>
             <div className="p-5 flex flex-row gap-5 w-xl justify-between">
@@ -447,4 +446,4 @@ export default function Index() {
   );
 }
 
-Index.suppressFirstRenderFlicker = true
+Index.suppressFirstRenderFlicker = true;

@@ -7,12 +7,12 @@ export default function Navbar(props) {
                     <div class="flex justify-center items-center flex-wrap">
                         <div class="items-center">
                             <Link href="/">
-                            <a className={"text-lg uppercase mx-3 font-bold !text-"+props.color+" cursor-pointer"}>
+                            <a className={"text-lg uppercase mx-3 font-bold !text-[#F6A494] cursor-pointer"}>
                                 Home
                             </a>
                             </Link>
                             <Link href="/project">
-                            <a className={"text-lg uppercase mx-3 font-bold text-"+props.color+" cursor-pointer"}>
+                            <a className={"text-lg uppercase mx-3 font-bold !text-[#F6A494] cursor-pointer"}>
                                 Project
                             </a>
                             </Link>
